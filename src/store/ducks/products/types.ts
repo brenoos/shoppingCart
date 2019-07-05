@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { Record } from 'immutable';
+import { Record, List } from 'immutable';
 
 export enum ProductsTypes {
   LOAD_REQUEST = '@products/LOAD_REQUEST',

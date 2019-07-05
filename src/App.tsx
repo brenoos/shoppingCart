@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 
 import Header from './components/commom/Header';
 import './App.css';
-import ProductsList from './components/commom/Products/ProductsList';
+import ProductsList from './components/pages/ProductsList';
 
 import store from './store';
 

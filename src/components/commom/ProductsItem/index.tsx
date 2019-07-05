@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-
+import { useDispatch } from 'react-redux';
 import CardHeader from '@material-ui/core/CardHeader';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -10,7 +10,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { Product } from '../../../../store/ducks/products/types';
+import { Product } from '../../../store/ducks/products/types';
+import { addItem } from '../../../store/ducks/cart/actions';
 
 const useStyles = makeStyles(
   createStyles({
@@ -34,6 +35,7 @@ interface Props {
 const ProductsItem: React.FC<Props> = ({ product }) => {
   const { card, root } = useStyles();
   const { id, title, picture, price } = product;
+  const dispatch = useDispatch();
 
   return (
     <Grid item xs={12} sm={12} md={4} lg={3} xl={2}>
@@ -52,7 +54,13 @@ const ProductsItem: React.FC<Props> = ({ product }) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
+          <Button
+            size="small"
+            onClick={() => {
+              dispatch(addItem(product));
+            }}
+            color="primary"
+          >
             Comprar
           </Button>
         </CardActions>

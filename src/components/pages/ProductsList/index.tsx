@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
-import { Dispatch } from 'redux';
-import api from '../../../../services/api';
-import ProductItem from '../ProductsItem';
-import { Product } from '../../../../store/ducks/products/types';
-import { ApplicationState } from '../../../../store';
+import ProductItem from '../../commom/ProductsItem';
+import { Product } from '../../../store/ducks/products/types';
+import { ApplicationState } from '../../../store';
 
-import { loadRequest } from '../../../../store/ducks/products/actions';
-import { getData } from '../../../../store/ducks/products/selectors';
+import { load } from '../../../store/ducks/products/actions';
+import { getData } from '../../../store/ducks/products/selectors';
 
 const useStyles = makeStyles(
   createStyles({
@@ -24,10 +22,10 @@ const ProductsList: React.FC = () => {
   const products: Product[] = useSelector((state: ApplicationState) =>
     getData(state)
   );
-  const dispatch: Dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadRequest());
+    dispatch(load());
   }, [dispatch]);
 
   return (

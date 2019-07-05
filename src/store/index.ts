@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { createStore, applyMiddleware, Store, compose } from 'redux';
-import createSagaMiddleware from 'redux-saga';
 import Immutable, { Record } from 'immutable';
+import thunk from 'redux-thunk';
 import { ProductsStateRecord } from './ducks/products/types';
-
 import rootReducer from './ducks/rootReducer';
-import rootSaga from './ducks/rootSaga';
+import api from '../services/api';
 
 declare global {
   interface Window {
@@ -19,8 +18,6 @@ interface ApplicationStateRecord {
 
 export interface ApplicationState extends Record<ApplicationStateRecord> {}
 
-const sagaMiddleware = createSagaMiddleware();
-
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -30,10 +27,10 @@ const composeEnhancers =
       })
     : compose;
 
-const enhancer = composeEnhancers(applyMiddleware(sagaMiddleware));
+const enhancer = composeEnhancers(
+  applyMiddleware(thunk.withExtraArgument({ api }))
+);
 
 const store: Store<ApplicationState> = createStore(rootReducer, enhancer);
-
-sagaMiddleware.run(rootSaga);
 
 export default store;
