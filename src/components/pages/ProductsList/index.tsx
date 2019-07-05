@@ -7,7 +7,7 @@ import { Product } from '../../../store/ducks/products/types';
 import { ApplicationState } from '../../../store';
 
 import { load } from '../../../store/ducks/products/actions';
-import { getData } from '../../../store/ducks/products/selectors';
+import { getProductsData } from '../../../store/ducks/products/selectors';
 
 const useStyles = makeStyles(
   createStyles({
@@ -20,7 +20,7 @@ const useStyles = makeStyles(
 const ProductsList: React.FC = () => {
   const { gridList } = useStyles();
   const products: Product[] = useSelector((state: ApplicationState) =>
-    getData(state)
+    getProductsData(state)
   );
   const dispatch = useDispatch();
 

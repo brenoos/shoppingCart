@@ -27,8 +27,22 @@ const reducer: Reducer<ProductsStateRecord> = (
         map
           .set('loading', false)
           .set('error', true)
-          .set('data', []);
+          .set('data', fromJS([]));
       });
+    case ProductsTypes.INCREMENT_PRODUCT:
+      return state.update('data', list =>
+        list.update(
+          list.findIndex((item: any) => item.get('id') === action.payload.id),
+          (item: any) => item.update('quantity', (value: number) => value + 1)
+        )
+      );
+    case ProductsTypes.DECREMENT_PRODUCT:
+      return state.update('data', list =>
+        list.update(
+          list.findIndex((item: any) => item.get('id') === action.payload.id),
+          (item: any) => item.update('quantity', (value: number) => value - 1)
+        )
+      );
     default:
       return state;
   }

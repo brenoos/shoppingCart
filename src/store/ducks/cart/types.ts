@@ -13,7 +13,7 @@ export interface ProductOnCart {
   id: string;
   title: string;
   price: number;
-  quantity: number;
+  quantity: any;
 }
 
 export interface ProductOnCartRecord extends Record<ProductOnCart> {}

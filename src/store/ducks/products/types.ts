@@ -5,6 +5,8 @@ export enum ProductsTypes {
   LOAD_REQUEST = '@products/LOAD_REQUEST',
   LOAD_SUCCESS = '@products/LOAD_SUCCESS',
   LOAD_FAILURE = '@products/LOAD_FAILURE',
+  INCREMENT_PRODUCT = '@products/INCREMENT_PRODUCT',
+  DECREMENT_PRODUCT = '@products/DECREMENT_PRODUCT',
 }
 
 export interface Product {
@@ -22,7 +24,7 @@ export interface Product {
 export interface ProductsRecord extends Record<Product> {}
 
 export interface ProductsState {
-  readonly data: Product[];
+  readonly data: List<Product>;
   readonly loading: boolean;
   readonly error: boolean;
 }
