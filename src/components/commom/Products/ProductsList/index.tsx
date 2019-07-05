@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { useSelector, useDispatch } from 'react-redux';
+import { Dispatch } from 'redux';
 import api from '../../../../services/api';
-import ProductItem, { Product } from '../ProductsItem';
+import ProductItem from '../ProductsItem';
+import { Product } from '../../../../store/ducks/products/types';
+import { ApplicationState } from '../../../../store';
+
+import { loadRequest } from '../../../../store/ducks/products/actions';
+import { getData } from '../../../../store/ducks/products/selectors';
 
 const useStyles = makeStyles(
   createStyles({
@@ -14,15 +21,14 @@ const useStyles = makeStyles(
 
 const ProductsList: React.FC = () => {
   const { gridList } = useStyles();
-  const [products, setProducts] = useState<Product[]>([]);
+  const products: Product[] = useSelector((state: ApplicationState) =>
+    getData(state)
+  );
+  const dispatch: Dispatch = useDispatch();
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await api.get('products');
-      setProducts(response.data);
-    }
-    fetchData();
-  }, []);
+    dispatch(loadRequest());
+  }, [dispatch]);
 
   return (
     <>

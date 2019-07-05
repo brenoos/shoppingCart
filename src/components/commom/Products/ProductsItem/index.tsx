@@ -10,6 +10,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { Product } from '../../../../store/ducks/products/types';
 
 const useStyles = makeStyles(
   createStyles({
@@ -25,18 +26,6 @@ const useStyles = makeStyles(
     },
   })
 );
-
-export interface Product {
-  id: string;
-  title: string;
-  price: number;
-  picture: string;
-  description: string;
-  memory: string;
-  brand: string;
-  chipType: string;
-  quantity: number;
-}
 
 interface Props {
   product: Product;
