@@ -1,5 +1,5 @@
 import { action } from 'typesafe-actions';
-import { Dispatch, Action, AnyAction } from 'redux';
+import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { CartTypes } from './types';
 import { Product, ProductsTypes } from '../products/types';

@@ -34,7 +34,7 @@ interface Props {
 
 const ProductsItem: React.FC<Props> = ({ product }) => {
   const { card, root } = useStyles();
-  const { id, title, picture, price } = product;
+  const { title, picture, price } = product;
   const dispatch = useDispatch();
 
   return (

@@ -2,8 +2,10 @@ import memoize from 'fast-memoize';
 import { ApplicationState } from '../..';
 import { Product } from './types';
 
-export const getProductsData = (state: ApplicationState) =>
+const getRepositoriesSlow = (state: ApplicationState) =>
   state.getIn(['products', 'data']).toJS();
+
+export const getProductsData = memoize(getRepositoriesSlow);
 
 export const getProduct = (state: ApplicationState, id: string): Product => {
   const products = getProductsData(state);

@@ -1,11 +1,6 @@
 import { Reducer } from 'redux';
-import { fromJS, List, Map } from 'immutable';
-import {
-  CartStateRecord,
-  CartTypes,
-  ProductOnCartRecord,
-  ProductOnCart,
-} from './types';
+import { fromJS } from 'immutable';
+import { CartStateRecord, CartTypes } from './types';
 
 const INITIAL_STATE: CartStateRecord = fromJS({
   data: [],
